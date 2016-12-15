@@ -18,34 +18,23 @@ function getPeople() {
 				return
 			}
 
-			// Fill with generic infos
 			var rows = response.values
-			var result = peopleFilledWithGenericInfos(rows)
-			resolve(result)
+			var header = rows.shift()
+
+			// turn each row into an object, based on header (column names)
+			var results = rows.map((row) => Object.assign.apply(
+				Object,
+			  [ {} ].concat(
+					header.map((key, i) => {
+						var o = {};
+						o[key] = row[i];
+						return o;
+					})
+				)
+			))
+			resolve(results)
 		})
 	})
-}
-
-/**
-Create arrays of members and friends with infos found in the Mangrove Friends spreadsheet
-*/
-function peopleFilledWithGenericInfos(rows) {
-	var friends = []
-	for (var i = 0; i < rows.length; i++) {
-		var row = rows[i]
-		if (row.length !== 0) {
-			var person = {
-				first_name: row[0],
-				last_name: row[1],
-				twitter: row[2],
-				image: row[3]
-			}
-			if (row[4] == 0) { // friend
-				friends.push(person)
-			}
-		}
-	}
-	return friends;
 }
 
 module.exports = {
