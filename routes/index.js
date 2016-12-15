@@ -10,16 +10,17 @@ const wording = {
 	twitterUsername: '@adrienjoly',
 }
 
+const wordingWith = (responses) => Object.assign({}, wording, {
+	responses: responses
+})
+
 router.get('/:index?', function(req, res, next) {
 	var index = req.params.index
-	responses.get().then(
-		(responses) => {
-			console.log(responses)
-			return res.render('index', Object.assign({}, wording, {
-				responses: /* index !== '' ? [ responses[index] ] : */ responses
-			}))
-		},
-		(err) => next(err)
+	responses.get((err, responses) =>
+		(err
+			? next(err)
+			: res.render('index', wordingWith(/* index !== '' ? [ responses[index] ] : */ responses))
+		)
 	)
 })
 

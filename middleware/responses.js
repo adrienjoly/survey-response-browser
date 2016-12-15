@@ -10,40 +10,40 @@ const auth = new google.auth.JWT(
 )
 
 // URL of sample data spreadsheet: https://docs.google.com/spreadsheets/d/1Mfelh98MMmIAqusHi0u2ugoZWGhSjxnMI2GFVoVrRGo/edit?usp=sharing
+const SPREADSHEET_ID = '1Mfelh98MMmIAqusHi0u2ugoZWGhSjxnMI2GFVoVrRGo'
+const SPREADSHEET_RANGE = 'SampleSheet'
 
-function getPeople() {
-	return new Promise(function (resolve, reject) {
-		var sheets = google.sheets('v4')
-		sheets.spreadsheets.values.get({
-			auth: auth,
-			spreadsheetId: '1Mfelh98MMmIAqusHi0u2ugoZWGhSjxnMI2GFVoVrRGo',
-			range: 'WebsiteV2'
-		}, function(err, response) {
-			// Error handler
-			if (err) {
-				reject(err)
-				return
-			}
+function fetchResponses(callback) {
+	var sheets = google.sheets('v4')
+	sheets.spreadsheets.values.get({
+		auth: auth,
+		spreadsheetId: SPREADSHEET_ID,
+		range: SPREADSHEET_RANGE
+	}, function(err, response) {
+		// Error handler
+		if (err) {
+			callback(err)
+			return
+		}
 
-			var rows = response.values
-			var header = rows.shift()
+		var rows = response.values
+		var header = rows.shift()
 
-			// turn each row into an object, based on header (column names)
-			var results = rows.map((row) => Object.assign.apply(
-				Object,
-			  [ {} ].concat(
-					header.map((key, i) => {
-						var o = {};
-						o[key] = row[i];
-						return o;
-					})
-				)
-			))
-			resolve(results)
-		})
+		// turn each row into an object, based on header (column names)
+		var results = rows.map((row) => Object.assign.apply(
+			Object,
+			[ {} ].concat(
+				header.map((key, i) => {
+					var o = {};
+					o[key] = row[i];
+					return o;
+				})
+			)
+		))
+		callback(null, results)
 	})
 }
 
 module.exports = {
-	get: getPeople
+	get: fetchResponses
 }
