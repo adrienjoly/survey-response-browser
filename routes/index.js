@@ -8,12 +8,18 @@ const wording = {
 	description: 'coucou',
 	thumbnail: 'http://TODO.jpg',
 	twitterUsername: '@adrienjoly',
-	sections: []
+	sections: [
+		{
+			title: 'title',
+			text: 'text',
+			cta: 'cta',
+			cta_link: 'cta_link',
+		},
+	],
 }
 
 router.get('/:index?', function(req, res, next) {
 	var index = req.params.index
-
 	responses.get().then(
 		(responses) => res.render('index', Object.assign({}, wording, {
 			reponses: index == '' ? responses : [ responses[index] ]
