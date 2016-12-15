@@ -1,11 +1,9 @@
 extends layout
 
 block content
-  each section,key in sections
+  each response, i in responses
     section
-      .content
-        .text
-          h2=section.title
-          p=section.text
-          a.button(href=section.cta_link)=section.cta
-      div(style="clear:both;")
+      each value, key in response
+        h2=key
+        p=value
+    hr
