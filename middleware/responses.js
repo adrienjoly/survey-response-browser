@@ -1,6 +1,8 @@
 var google = require('googleapis')
 var auth = require('./auth.js')
 
+// URL of sample data spreadsheet: https://docs.google.com/spreadsheets/d/1Mfelh98MMmIAqusHi0u2ugoZWGhSjxnMI2GFVoVrRGo/edit?usp=sharing
+
 /**
 Get people from the Mangrove Friends spreadsheet
 */
@@ -9,8 +11,8 @@ function getPeople() {
 		var sheets = google.sheets('v4')
 		sheets.spreadsheets.values.get({
 			auth: auth,
-			spreadsheetId: '1ksK3vR4XF60SnegkSAjV3Q8SYHh-dgGUJDA4Y9RTBRE',
-			range: 'WebsiteV2!A2:E'
+			spreadsheetId: '1Mfelh98MMmIAqusHi0u2ugoZWGhSjxnMI2GFVoVrRGo',
+			range: 'WebsiteV2'
 		}, function(err, response) {
 			// Error handler
 			if (err) {
