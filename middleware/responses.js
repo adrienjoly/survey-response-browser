@@ -1,11 +1,16 @@
 var google = require('googleapis')
-var auth = require('./auth.js')
+var key = require('./survey-response-browser-2f4433c304e6.json') // TODO: keep your own file private / secret
+
+const auth = new google.auth.JWT(
+  key.client_email,
+  null,
+  key.private_key,
+  ['https://www.googleapis.com/auth/spreadsheets.readonly', 'https://www.googleapis.com/auth/drive'],
+  null
+)
 
 // URL of sample data spreadsheet: https://docs.google.com/spreadsheets/d/1Mfelh98MMmIAqusHi0u2ugoZWGhSjxnMI2GFVoVrRGo/edit?usp=sharing
 
-/**
-Get people from the Mangrove Friends spreadsheet
-*/
 function getPeople() {
 	return new Promise(function (resolve, reject) {
 		var sheets = google.sheets('v4')
