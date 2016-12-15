@@ -1,31 +1,25 @@
 var express = require('express')
-var wording = require('../middleware/wording.js')
-var people = require('../middleware/people.js')
+var responses = require('../middleware/responses.js')
 var router = express.Router()
-router.use(wording)
 
-router.get('/:name?', function(req, res, next) {
-	var name = req.params.name
-	name = name ? name : 'index'
+const wording = {
+	urlPrefix: 'http://TODO',
+	title: 'response browser',
+	description: 'coucou',
+	thumbnail: 'http://TODO.jpg',
+	twitterUsername: '@adrienjoly',
+	sections: []
+}
 
-	if (name === 'team') {
-		// Append people
-		people.get().
-			then(
-				function (persons) {
-					var result = req.wording
-					result.friends = persons.friends
-					result.members = persons.members
-					res.render(name, result)
-				},
-				function (err) {
-					next(err)
-				}
-			)
-	} else {
-		// Just render using wording
-		res.render(name, req.wording)
-	}
+router.get('/:index?', function(req, res, next) {
+	var index = req.params.index
+
+	responses.get().then(
+		(responses) => res.render('index', Object.assign({}, wording, {
+			reponses: index == '' ? responses : [ responses[index] ]
+		})),
+		(err) => next(err)
+	)
 })
 
 module.exports = router
