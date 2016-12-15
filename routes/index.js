@@ -14,9 +14,9 @@ router.get('/:index?', function(req, res, next) {
 	var index = req.params.index
 	responses.get().then(
 		(responses) => {
-			console.log(responses.friends)
+			console.log(responses)
 			return res.render('index', Object.assign({}, wording, {
-				responses: /* index !== '' ? [ responses.friends[index] ] : */ responses.friends
+				responses: /* index !== '' ? [ responses[index] ] : */ responses
 			}))
 		},
 		(err) => next(err)
