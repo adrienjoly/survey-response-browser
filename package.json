@@ -1,7 +1,7 @@
 {
-  "name": "mangrove",
+  "name": "survey-response-browser",
+  "description": "Web app for browsing responses of a Google Form survey",
   "version": "0.0.0",
-  "private": true,
   "scripts": {
     "start": "node ./bin/www"
   },
