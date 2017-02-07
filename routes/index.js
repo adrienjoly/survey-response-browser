@@ -2,7 +2,7 @@ var express = require('express')
 var responses = require('../middleware/responses.js')
 var router = express.Router()
 
-const wording = {
+const meta = {
 	urlPrefix: 'http://TODO',
 	title: 'response browser',
 	description: 'coucou',
@@ -10,17 +10,18 @@ const wording = {
 	twitterUsername: '@adrienjoly',
 }
 
-const wordingWith = (responses) => Object.assign({}, wording, {
+const genPage = (responses) => Object.assign({}, meta, {
 	responses: responses
 })
 
-router.get('/:index?', function(req, res, next) {
-	var index = req.params.index
-	responses.get((err, responses) =>
-		(err
+const select = (responses, index) =>
+	index !== undefined ? [ responses[index] ] : responses
+
+router.get('/:spreadsheetId/:index?', function(req, res, next) {
+	responses.get(req.params.spreadsheetId, (err, responses) =>
+		err
 			? next(err)
-			: res.render('index', wordingWith(/* index !== '' ? [ responses[index] ] : */ responses))
-		)
+			: res.render('index', genPage(select(responses, req.params.index)))
 	)
 })
 

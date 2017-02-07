@@ -9,17 +9,27 @@ const auth = new google.auth.JWT(
   null
 )
 
-// URL of sample data spreadsheet: https://docs.google.com/spreadsheets/d/1Mfelh98MMmIAqusHi0u2ugoZWGhSjxnMI2GFVoVrRGo/edit?usp=sharing
-const SPREADSHEET_ID = '1Mfelh98MMmIAqusHi0u2ugoZWGhSjxnMI2GFVoVrRGo'
-const SPREADSHEET_RANGE = 'SampleSheet'
-
-function fetchResponses(callback) {
+function getSheet(spreadSheetId, callback) {
 	var sheets = google.sheets('v4')
-	sheets.spreadsheets.values.get({
+	sheets.spreadsheets.get({
 		auth: auth,
-		spreadsheetId: SPREADSHEET_ID,
-		range: SPREADSHEET_RANGE
-	}, function(err, response) {
+		spreadsheetId: spreadSheetId,
+	}, function(err, sheet) {
+		if (err) {
+			callback(err)
+		} else {
+			var firstRange = sheet.sheets[0].properties.title // e.g. 'SampleSheet'
+			sheets.spreadsheets.values.get({
+				auth: auth,
+				spreadsheetId: spreadSheetId, // e.g. '1Mfelh98MMmIAqusHi0u2ugoZWGhSjxnMI2GFVoVrRGo', for https://docs.google.com/spreadsheets/d/1Mfelh98MMmIAqusHi0u2ugoZWGhSjxnMI2GFVoVrRGo/edit?usp=sharing
+				range: firstRange,
+			}, callback)
+		}
+	})
+}
+
+function fetchResponses(spreadSheetId, callback) {
+	getSheet(spreadSheetId, function(err, response) {
 		// Error handler
 		if (err) {
 			callback(err)
