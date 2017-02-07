@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  each submission in responses
+    section
+      each response in submission
+        h2=response.key
+        p=response.value
+  p made with https://github.com/adrienjoly/survey-response-browser

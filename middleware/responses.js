@@ -40,7 +40,12 @@ function fetchResponses(spreadSheetId, callback) {
 		var header = rows.shift()
 
 		// turn each row into an object, based on header (column names)
-		var results = rows.map((row) => Object.assign.apply(
+		var results = rows.map((rowValues) => rowValues.map((v, i) => ({
+			key: header[i],
+			value: v,
+		})))
+		/*
+		Object.assign.apply(
 			Object,
 			[ {} ].concat(
 				header.map((key, i) => {
@@ -49,7 +54,7 @@ function fetchResponses(spreadSheetId, callback) {
 					return o
 				})
 			)
-		))
+		))*/
 		callback(null, results)
 	})
 }

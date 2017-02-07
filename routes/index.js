@@ -21,7 +21,7 @@ router.get('/:spreadsheetId/:index?', function(req, res, next) {
 	responses.get(req.params.spreadsheetId, (err, responses) =>
 		err
 			? next(err)
-			: res.render('index', genPage(select(responses, req.params.index)))
+			: res.render('responses', genPage(select(responses, req.params.index)))
 	)
 })
 
