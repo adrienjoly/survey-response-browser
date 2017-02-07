@@ -34,9 +34,9 @@ function fetchResponses(callback) {
 			Object,
 			[ {} ].concat(
 				header.map((key, i) => {
-					var o = {};
-					o[key] = row[i];
-					return o;
+					var o = {}
+					o[key] = row[i]
+					return o
 				})
 			)
 		))
