@@ -17,12 +17,20 @@ const genPage = (responses) => Object.assign({}, meta, {
 const select = (responses, index) =>
 	index !== undefined ? [ responses[index] ] : responses
 
+function tap(fct) {
+	return (err, res) => {
+		console.log('=>', err || res)
+		fct(err, res)
+	}
+}
+
 router.get('/:spreadsheetId/:index?', function(req, res, next) {
-	responses.get(req.params.spreadsheetId, (err, responses) =>
+	console.log('parsing spreadsheet:', req.params.spreadsheetId, '...');
+	responses.get(req.params.spreadsheetId, tap((err, responses) =>
 		err
 			? next(err)
 			: res.render('responses', genPage(select(responses, req.params.index)))
-	)
+	))
 })
 
 module.exports = router

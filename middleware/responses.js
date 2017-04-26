@@ -15,15 +15,17 @@ function getSheet(spreadSheetId, callback) {
 		auth: auth,
 		spreadsheetId: spreadSheetId,
 	}, function(err, sheet) {
+		console.log('getSheet =>', err || sheet)
 		if (err) {
 			callback(err)
 		} else {
 			var firstRange = sheet.sheets[0].properties.title // e.g. 'SampleSheet'
-			sheets.spreadsheets.values.get({
-				auth: auth,
+			var req = {
 				spreadsheetId: spreadSheetId, // e.g. '1Mfelh98MMmIAqusHi0u2ugoZWGhSjxnMI2GFVoVrRGo', for https://docs.google.com/spreadsheets/d/1Mfelh98MMmIAqusHi0u2ugoZWGhSjxnMI2GFVoVrRGo/edit?usp=sharing
 				range: firstRange,
-			}, callback)
+			}
+			console.log('data request:', req)
+			sheets.spreadsheets.values.get(Object.assign({ auth }, req), callback)
 		}
 	})
 }
