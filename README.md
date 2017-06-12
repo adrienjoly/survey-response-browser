@@ -19,3 +19,7 @@ open http://localhost:3000
 1. share the google spreadsheet containing the survey responses with `sample-data@survey-response-browser.iam.gserviceaccount.com` (read only)
 2. identify the unique identifier of your spreadsheet, from its URL (e.g. `1Mfelh98MMmIAqusHi0u2ugoZWGhSjxnMI2GFVoVrRGo`)
 3. append that identifier to the URL above, in order to display responses. (e.g. `http://localhost:3000/1Mfelh98MMmIAqusHi0u2ugoZWGhSjxnMI2GFVoVrRGo`)
+
+## Troubleshooting
+
+If you're getting `Internal error encountered`, rename the name your sheet as `SampleSheet` then retry.
