@@ -4,6 +4,8 @@ Final goal: Web app for browsing responses of a Google Form survey
 
 Current progress: Web app that converts a spreadsheet of responses into a page of text that's easy to read and/or print.
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 ## Usage
 
 In your favorite terminal shell:

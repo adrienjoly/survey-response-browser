@@ -1,0 +1,16 @@
+{
+  "name": "Survey Response Browser",
+  "description": "Current progress: Web app that converts a spreadsheet of responses into a page of text that's easy to read and/or print.",
+  "repository": "https://github.com/adrienjoly/survey-response-browser",
+  "logo": "https://cdn.rawgit.com/adrienjoly/survey-response-browser/master/icon.png",
+  "keywords": [
+    "pdf",
+    "google-forms",
+    "google-spreadsheets",
+    "converter",
+    "conversion"
+  ],
+  "scripts": {
+    "start": "node app.js"
+  }
+}
