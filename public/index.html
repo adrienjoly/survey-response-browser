@@ -1,17 +1,35 @@
-<h1>survey response browser</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Survey Response Browser</title>
+    <link rel="stylesheet" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" href="/stylesheets/index.css">
+  </head>
+  <body>
 
-<h2>how to use</h2>
+    <h1>Survey Response Browser</h1>
 
-<ol>
-  <li>share the google spreadsheet containing the survey responses with <code>sample-data@survey-response-browser.iam.gserviceaccount.com</code> (read only)</li>
-  <li>identify the unique identifier of your spreadsheet, from its URL</li>
-  <li>append that identifier to this URL, in order to display responses</li>
-</ol>
-
-Sample: <a href="/1Mfelh98MMmIAqusHi0u2ugoZWGhSjxnMI2GFVoVrRGo">/1Mfelh98MMmIAqusHi0u2ugoZWGhSjxnMI2GFVoVrRGo</a> (for <a href="https://docs.google.com/spreadsheets/d/1Mfelh98MMmIAqusHi0u2ugoZWGhSjxnMI2GFVoVrRGo/edit#gid=955123836">that spreadsheet</a>)
-
-<h2>source code</h2>
-
-the source code of this application is available at <a href="https://github.com/adrienjoly/survey-response-browser">github.com/adrienjoly/survey-response-browser</a>.
-
-latest updates are listed on this page: <a href="https://github.com/adrienjoly/survey-response-browser/commits/master">commits</a>.
+    <p>Browse responses of a Google Forms survey, in a more comfortable way.</p>
+    
+    <p>Survey Response Browser converts a Google Spreadsheet into a HTML page with that's easy to read and/or print. It's especially useful to read multi-line answers.</p>
+    
+    <p>As explained on <a href="https://adrienjoly.com/teaching/">my Teaching page</a>, I use it to generate a PDF file that contains the assignments submitted by all my students on Google Forms, so I can review, annotate and return their responses using PDF Master on my iPad.</p>
+    
+    <h2>Usage</h2>
+    
+    <ol>
+      <li>From Google Forms, export the responses of your survey to Google Spreadsheets</li>
+      <li>Share the resulting Google Spreadsheet document with <code>sample-data@survey-response-browser.iam.gserviceaccount.com</code> (read-only permission is sufficient)</li>
+      <li>Copy the unique identifier of your spreadsheet from its URL</li>
+      <li>Paste that identifier at the end of the URL of this website, in order to display responses</li>
+    </ol>
+    
+    Sample: <a href="/1Mfelh98MMmIAqusHi0u2ugoZWGhSjxnMI2GFVoVrRGo">/1Mfelh98MMmIAqusHi0u2ugoZWGhSjxnMI2GFVoVrRGo</a> (for <a href="https://docs.google.com/spreadsheets/d/1Mfelh98MMmIAqusHi0u2ugoZWGhSjxnMI2GFVoVrRGo/edit#gid=955123836">that spreadsheet</a>)
+    
+    <h2>Source code</h2>
+    
+    <p>The source code of this application is available at <a href="https://github.com/adrienjoly/survey-response-browser">github.com/adrienjoly/survey-response-browser</a>.</p>
+    
+    <p>Latest updates are listed on this page: <a href="https://github.com/adrienjoly/survey-response-browser/commits/master">commits</a>.</p>
+  </body>
+</html>
