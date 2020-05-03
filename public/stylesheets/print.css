@@ -8,3 +8,14 @@ section {
   border-top: 2px solid blue;
   page-break-after: always;
 }
+
+xmp {
+  width: 100%;
+  border: 0px none;
+  background-color: #eee;
+  padding: 10px;
+  box-sizing: border-box;
+  white-space: pre-wrap;
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+  font-size: 12px;
+}

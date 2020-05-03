@@ -5,6 +5,5 @@ block content
     section
       each response in submission
         h2=response.key
-        each line in (response.value || '').split('\n')
-          p=line
+        xmp(rows=(response.value || '').split('\n').length)=(response.value || '')
   p made with https://github.com/adrienjoly/survey-response-browser
