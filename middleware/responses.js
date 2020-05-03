@@ -1,4 +1,4 @@
-var google = require('googleapis')
+var { google } = require('googleapis')
 var key = require('./survey-response-browser-2f4433c304e6.json') // TODO: keep your own file private / secret
 
 const auth = new google.auth.JWT(
@@ -14,7 +14,8 @@ function getSheet(spreadSheetId, callback) {
 	sheets.spreadsheets.get({
 		auth: auth,
 		spreadsheetId: spreadSheetId,
-	}, function(err, sheet) {
+	}, function(err, res) {
+		var sheet = res.data;
 		console.log('getSheet =>', err || sheet)
 		if (err) {
 			callback(err)
@@ -38,7 +39,7 @@ function fetchResponses(spreadSheetId, callback) {
 			return
 		}
 
-		var rows = response.values
+		var rows = response.data.values
 		var header = rows.shift()
 
 		// turn each row into an object, based on header (column names)
